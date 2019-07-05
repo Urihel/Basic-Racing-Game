@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style> 
+    #racetrack {
+        border: 1px solid black;
+        height: 300px;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 900px;
+
+    }
+    #racecar1 {
+        background-color: red;
+        border: 1px solid black;
+        line-height: 80px;
+        height: 80px;
+        position: absolute;
+        top: 46.6px;
+        left: 20px;
+        right: 0;
+        width: 80px;
+        text-align: center;
+    }
+    #racecar2 {
+        background-color: blue;
+        border: 1px solid red;
+        line-height: 80px;
+        height: 80px;
+        position: absolute;
+        top: 173.2px;
+        left: 20px;
+        width: 80px;
+        text-align: center;
+    }
+    #raceflag {
+        background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCz1oMrYDP9OjVdFWJjCtmL_8JHtBis1uNxFo0P9f1sloCxscyg");
+        /*border: 1px solid black;*/
+        height: 280px;
+        position: absolute;
+        top: 10px;
+        left: 800px;
+        width: 60px;
+        
+    }
+    #container{
+        border: 1px solid black ;
+        height: 100px;
+        position: relative;
+        top: 20px;
+        left: 300px;
+        width: 300px;
+
+    }
+    #btn  {
+        border: 1px solid black ;
+        line-height: 43px;
+        height: 45px;
+        width: 100px;
+        position: absolute;
+        top: 27.5px;
+        left: 33px;
+        text-align: center;
+
+    }
+
+    #randomNumber {
+        border: 1px solid red; 
+        line-height: 43px;
+        height: 45px;
+        width: 100px;
+        position: absolute;
+        top: 27.5px; 
+        left: 166px;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="racetrack">
+        <div id="racecar1">1</div>
+        <div id="racecar2">2</div>
+        <div id="raceflag"></div>
+    </div> 
+    
+    <!--The container that stores the button and the random number generator-->
+    <div id="container"> 
+    <!--Button to allow a random number to generate-->
+    <div id="btn">Click</div>
+    <!--randomNumber generates a number between 0 - 20-->
+    <div id="randomNumber">0</div>
+    </div>
+
+    <script> 
+    var raceTrack = document.getElementById("racetrack");
+    //console.log(raceTrack);
+    var raceCarOne = document.getElementById("racecar1");
+    //console.log(raceCarOne);
+    var raceCarTwo = document.getElementById("racecar2");
+    //console.log(raceCarTwo);
+    var scoreBoard = document.getElementById("container");
+    //console.log(scoreBoard);
+    var button = document.getElementById("btn");
+    //console.log(button);
+    var n = document.getElementById("randomNumber");
+    //console.log(n);
+    
+
+    function randNumGenerator () {
+        button.addEventListener("click", function (e) {
+            var randNum = Math.floor((Math.random()* 20) + 1);
+            console.log(randNum);
+            if((randNum >= 1 || randNum <= 20) && (randNum % 2 === 0)) {
+                n.innerHTML = randNum;
+                var x = parseInt(getComputedStyle(raceCarOne).left);
+                x += randNum;
+                raceCarOne.style.left = x + "px";
+            }else if((randNum >= 1 || randNum <= 20) && (randNum % 1 === 0 )) {
+                var y = parseInt(getComputedStyle(raceCarTwo).left);
+                y += randNum;
+                raceCarTwo.style.left = y + "px";
+            }
+        });
+    }
+    randNumGenerator();
+
+   
+  
+   
+   
+
+     
+    
+    </script>
+</body>
+</html>
